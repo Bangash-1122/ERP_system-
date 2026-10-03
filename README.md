@@ -26,6 +26,8 @@ This repository contains a React/Vite ERP frontend and a Node.js/Express/Mongoos
 
 The backend is a **modular monolith**: one Express process, organized into domain routes, controllers, services and Mongoose models. The frontend is a separate single-page application. There are no independent inventory/accounting microservices, message queue, background posting worker or database transaction coordinator in the supplied code.
 
+![System Architecture and End-to-End Data Flow](./docs/images/system-architecture.png)
+
 ```mermaid
 flowchart TD
   UI[React module pages] --> API[Module API wrappers and Axios]
@@ -202,6 +204,8 @@ Consequently, a green toast or populated table is not proof that the API accepte
 
 Protected domain routers call `auth`, which requires a `Bearer` token and verifies its signature/expiry. The frontend's fake demo token is not a valid backend login token. Authentication still blocks unauthenticated requests to those routers.
 
+![Authentication and Authorization Flow](./docs/images/auth-flow.png)
+
 ```mermaid
 flowchart TD
   FORM[Login form] --> CALL[POST auth/login]
@@ -317,6 +321,8 @@ Finance side effects run even if a caller supplies Draft or Cancelled payment/re
 
 ### Posting sequence
 
+![Posting Side-Effects and General Ledger Sequence Diagram](./docs/images/posting-sequence.png)
+
 ```mermaid
 sequenceDiagram
   participant HTTP as Controller
@@ -374,6 +380,8 @@ It inserts one LedgerEntry and overwrites matching Account.balance. Missing acco
 Voucher totals being mathematically balanced does not establish correct account selection, valid party allocation or inventory valuation. There is no fiscal-period closure, reversal engine or duplicate-posting key.
 
 ### Warehouse transfer timing
+
+![Warehouse Transfer Lifecycle and Stock Updates](./docs/images/inventory-transfer-flow.png)
 
 ```mermaid
 flowchart TD
