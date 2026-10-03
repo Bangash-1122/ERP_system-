@@ -1,0 +1,18 @@
+{
+  "short_name": "Nexus ERP",
+  "name": "Nexus Enterprise ERP Management System",
+  "description": "Production-ready Enterprise ERP suite for Inventory, Accounting, Purchases, Sales, Logistics, and RBAC",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#090d16",
+  "theme_color": "#247f7d",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}
